@@ -1,12 +1,28 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { SigninPage, DashPage } from '../../pages';
+import IndexPage from '../../pages/indexPage/index.page';
+import { ProtectedRoute, RedirectRoute } from '../../services/routes';
+
 const App = () => {
-  const name = 'Roman';
   return (
-    <>
-      <h1>
-        React TypeScript Template -{process.env.NODE_ENV}.{process.env.name}.
-        By: {name}!
-      </h1>
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <IndexPage />
+        </Route>
+        {/* ToDo delete next route after testing */}
+        <Route exact path="/signin_test">
+          <SigninPage />
+        </Route>
+        <RedirectRoute pathname="dash" path="/signin">
+          <SigninPage />
+        </RedirectRoute>
+        <ProtectedRoute exact path="/dash">
+          <DashPage />
+        </ProtectedRoute>
+      </Switch>
+    </Router>
   );
 };
 
