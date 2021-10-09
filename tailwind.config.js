@@ -1,5 +1,5 @@
 module.exports = {
-  purge: [],
+  purge: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -11,7 +11,7 @@ module.exports = {
       },
       fontFamily: {
         montserrat: ['Montserrat Alternates', 'sans-serif'],
-        ronoto: ['roboto'],
+        roboto: ['roboto'],
         heebo: ['Heebo', 'sans-serif'],
       },
     },

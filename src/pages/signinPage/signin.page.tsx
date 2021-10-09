@@ -1,50 +1,80 @@
 import React from 'react';
 import 'tailwindcss/tailwind.css';
-import './signin.page.css';
-import UseSignin from '../../services/use.signin';
+import styles from './signin.page.module.css';
+import { useFormik } from 'formik';
+import validationSchema from '../../services/validation.schema';
+import UseAuthentication from '../../services/use.authentication';
 
 const SigninPage = () => {
-  const useSignin = UseSignin();
+  const { handleSubmitSignin } = UseAuthentication();
+
+  const { handleSubmit, handleChange, values, touched, errors, setErrors } =
+    useFormik({
+      initialValues: {
+        email: '',
+        password: '',
+      },
+      validateOnBlur: true,
+      validateOnChange: true,
+      validationSchema,
+
+      onSubmit: async (values) => {
+        try {
+          await handleSubmitSignin(values);
+          // eslint-disable-next-line
+        } catch (err: any) {
+          // prettier-ignore
+          setErrors({ 
+              password: (err?.response?.data?.message || 'Something went wrong! Please try again.'), 
+            });
+        }
+      },
+    });
 
   return (
     <>
-      <div className="signinPageContainer min-w-min">
-        <div className="signinPage text-gyBlack font-montserrat py-7 px-28 max-w-screen-2xl mx-auto  h-full">
+      <div className={`${styles.container} min-w-min`}>
+        <div className="signinPage">
           <header>
-            <h2 className="HeadLogo text-6xl text-stroke">
+            <h2 className={styles.textStroke}>
               Goods<span className="font-bold">Yard</span>
             </h2>
           </header>
-          <main className="mt-32 grid md:grid-cols-3 md:gap-x-28">
-            <div className="signinPage_tagline col-span-1 invisible md:visible text-4xl xl:text-6xl text-gyBlack font-bold text-stroke">
+          <main className="signinMain">
+            <div className="signinTagLine text-stroke">
               Get Your goods in order
             </div>
-            <div className="signinPage_form col-span-3 md:col-span-2 text-base xl:text-lg bg-gyBlack bg-opacity-70 rounded-3xl pt-12 pb-10 px-12 xl:px-28 font-heebo">
-              <form onSubmit={useSignin.handleSubmit}>
+            <div className={`${styles.form} signinForm`}>
+              <form onSubmit={handleSubmit}>
                 <input
                   type="email"
                   name="email"
                   placeholder="Email"
-                  className="signinPageInput"
-                  onChange={useSignin.handleChangeEmail}
+                  className={styles.input}
+                  onChange={handleChange}
+                  value={values.email}
                 ></input>
+                {touched.email && errors.email && (
+                  <div className={styles.inputError}>{errors.email}</div>
+                )}
                 <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  className="signinPageInput"
-                  onChange={useSignin.handleChangePassword}
+                  className={styles.input}
+                  onChange={handleChange}
+                  value={values.password}
                 ></input>
+                {touched.password && errors.password && (
+                  <div className={styles.inputError}>{errors.password}</div>
+                )}
                 <div className="flex items-center justify-between">
-                  <button
-                    type="submit"
-                    className="py-5 px-12 bg-gyGreen rounded-3xl text-2xl text-gyBlack"
-                  >
+                  <button type="submit" className="signinSubmitBtn">
                     Sign&nbsp;in
                   </button>
-                  <button className="text-base lg:text-xl text-gyLightGray ml-3">
+                  <a href={' '} className="signinBtn">
                     Forgot your password?
-                  </button>
+                  </a>
                 </div>
               </form>
             </div>

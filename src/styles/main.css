@@ -603,6 +603,123 @@ video {
   }
 }
 
+.signinPage {
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  max-width: 1536px;
+  padding-left: 7rem;
+  padding-right: 7rem;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  font-family: Montserrat Alternates, sans-serif;
+  --tw-text-opacity: 1;
+  color: rgba(23, 23, 23, var(--tw-text-opacity));
+}
+
+.signinMain {
+  margin-top: 8rem;
+  display: grid;
+}
+
+@media (min-width: 768px){
+  .signinMain{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    -moz-column-gap: 7rem;
+         column-gap: 7rem;
+  }
+}
+
+.signinForm {
+  grid-column: span 3 / span 3;
+  border-radius: 1.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(23, 23, 23, var(--tw-bg-opacity));
+  --tw-bg-opacity: 0.7;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 2.5rem;
+  font-family: Heebo, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@media (min-width: 768px){
+  .signinForm{
+    grid-column: span 2 / span 2;
+  }
+}
+
+@media (min-width: 1280px){
+  .signinForm{
+    padding-left: 7rem;
+    padding-right: 7rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+.signinTagLine {
+  visibility: hidden;
+  grid-column: span 1 / span 1;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgba(23, 23, 23, var(--tw-text-opacity));
+}
+
+@media (min-width: 768px){
+  .signinTagLine{
+    visibility: visible;
+  }
+}
+
+@media (min-width: 1280px){
+  .signinTagLine{
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+.signinSubmitBtn {
+  border-radius: 1.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(111, 207, 151, var(--tw-bg-opacity));
+}
+
+.signinSubmitBtn:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+}
+
+.signinSubmitBtn{
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  --tw-text-opacity: 1;
+  color: rgba(23, 23, 23, var(--tw-text-opacity));
+}
+
+.signinBtn {
+  margin-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(242, 242, 242, var(--tw-text-opacity));
+}
+
+@media (min-width: 1024px){
+  .signinBtn{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
 .sr-only{
   position: absolute;
   width: 1px;
@@ -22725,7 +22842,7 @@ video {
   font-family: Montserrat Alternates, sans-serif;
 }
 
-.font-ronoto{
+.font-roboto{
   font-family: roboto;
 }
 
@@ -32583,17 +32700,6 @@ video {
 
 .ease-in-out{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.signinPageInput {
-  margin-bottom: 2rem;
-  height: 2.75rem;
-  width: 100%;
-  border-radius: 1rem;
-  --tw-bg-opacity: 1;
-  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
-  padding-left: 3.5rem;
-  padding-right: 3.5rem;
 }
 
 @media (min-width: 640px){
@@ -54687,7 +54793,7 @@ video {
     font-family: Montserrat Alternates, sans-serif;
   }
 
-  .sm\:font-ronoto{
+  .sm\:font-roboto{
     font-family: roboto;
   }
 
@@ -86566,7 +86672,7 @@ video {
     font-family: Montserrat Alternates, sans-serif;
   }
 
-  .md\:font-ronoto{
+  .md\:font-roboto{
     font-family: roboto;
   }
 
@@ -118445,7 +118551,7 @@ video {
     font-family: Montserrat Alternates, sans-serif;
   }
 
-  .lg\:font-ronoto{
+  .lg\:font-roboto{
     font-family: roboto;
   }
 
@@ -150324,7 +150430,7 @@ video {
     font-family: Montserrat Alternates, sans-serif;
   }
 
-  .xl\:font-ronoto{
+  .xl\:font-roboto{
     font-family: roboto;
   }
 
@@ -182203,7 +182309,7 @@ video {
     font-family: Montserrat Alternates, sans-serif;
   }
 
-  .\32xl\:font-ronoto{
+  .\32xl\:font-roboto{
     font-family: roboto;
   }
 
