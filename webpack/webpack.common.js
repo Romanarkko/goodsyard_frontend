@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-// const CopyPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
@@ -20,12 +19,23 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(css|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
+        include: /\.module\.(css|scss)$/,
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: ['style-loader', 'css-loader'],
+        exclude: /\.module\.(css|scss)$/,
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
@@ -45,16 +55,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './src/index.html'),
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: 'public',
-    //       to: 'build',
-    //     },
-    //   ],
-    // }),
+    new MiniCssExtractPlugin(),
   ],
   devServer: {
+    historyApiFallback: true,
     contentBase: path.join(__dirname, 'build'),
     compress: true,
     port: 3000,
